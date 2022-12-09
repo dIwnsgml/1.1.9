@@ -39,7 +39,7 @@ p.right(90)
 
 #The code below is for the cloud
 #This code is for the big circle part of the cloud.
-for i in range(1):
+for i in range(7):
   cloud_x = random.randrange(-350, 350)
   cloud_y = random.randrange(200, 250)
   print(cloud_x, cloud_y)
@@ -47,9 +47,7 @@ for i in range(1):
 # Code below is for the lightning bolt.
 
 #this code for ocean
-#create_ocean()
-for i in range(1):
-  create_lightening(random.randrange(-400, 400), 230)
+create_ocean()
 
 
 
@@ -76,12 +74,21 @@ fish_shape2 = ["fish1-1.gif","fish2-1.gif","fish3-1.gif","fish4-1.gif"]
 fish_speed = [1.5, 2, 1, 0.7]
 fish_cor = [[-100, -40], [100, -30], [100, -50], [-100, -30]]
 fish_dir = [180, 0, 0, 0]
-while True:
+
+
+t[1] = threading.Thread(target=create_fish, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0))
+t[1].start()
+
+t[3] = threading.Thread(target=create_lightening)
+t[3].start()
+'''while True:
   if(fish_n < 3):
     for i in range(3):
-      t[i] = threading.Thread(target=create_fish, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0, 0))
+      t[i] = threading.Thread(target=create_fish, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0))
       fish_n += 1
-for i in range(1):
+      t[i].start()
+      fish_n = 6'''
+'''for i in range(1):
   t1 = threading.Thread(target=elements_moves, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0))
   t1.setDaemon(True)
   t1.start()
@@ -90,7 +97,7 @@ for i in range(1):
   t1.start()
   t2 = threading.Thread(target=elements_moves, args=("fish4.gif", 100, -70, 2, "fish4-1.gif", 180))
   t2.setDaemon(True)
-  t2.start()
+  t2.start()'''
 '''fish_n = 3
 threads = [0,0,0,0]
 fish_shape1 = ["fish1.gif","fish2.gif","fish3.gif","fish4.gif"]

@@ -3,17 +3,19 @@ import random
 p = trtl.Turtle()
 p.speed(1000)
 
-def create_lightening(x, y):
-  p.pencolor("yellow")
-  for i in range(3):
-    p.penup()
-    p.goto(x, y)
-    p.pendown()
-    for i in range(10):
-      p.pensize(10 - i)
-      p.setheading(random.randrange(240, 300))
-      p.forward(i * 6)
-  p.clear()
+def create_lightening():
+  while(True):
+    p.pencolor("yellow")
+    x = random.randrange(-400, 400)
+    for i in range(3):
+      p.penup()
+      p.goto(x, 230)
+      p.pendown()
+      for i in range(10):
+        p.pensize(10 - i)
+        p.setheading(random.randrange(240, 300))
+        p.forward(i * 6)
+    p.clear()
 
 '''  p.penup()
   p.goto(15,47)
