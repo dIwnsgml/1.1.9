@@ -7,7 +7,6 @@ import keyboard
 from cloud import create_clouds
 from lightening import create_lightening
 from ocean import create_ocean
-from fish import create_fish
 
 canvheight = 600
 canvwidth = 800
@@ -52,13 +51,36 @@ for i in range(1):
   create_lightening(random.randrange(-400, 400), 230)
 
 
+fish = [0, 0, 0]
+def elements_moves(fish_shape1, x, y, fish_speed, fish_shape2, start_heading, fish_n):
+  fish_shapes = [fish_shape1, fish_shape2]
+  shape_i = 0
+  fish_direction = start_heading
+  wn.addshape(fish_shapes[0])
+  fish[fish_n] = trtl.Turtle(shape=fish_shapes[0])
+  fish[fish_n].hideturtle()
+  fish[fish_n].penup()
+  fish[fish_n].setheading(fish_direction)
+  fish[fish_n].turtlesize(1.5, 1.5)
+  fish[fish_n].goto(x, y)
+  fish[fish_n].speed(2)
+  fish[fish_n].showturtle()
+  while(1):
+    fish[fish_n].forward(fish_speed)
+    if(fish[fish_n].xcor() > 400 and fish_direction == 0):
+      shape_i += 1
+      wn.addshape(fish_shapes[shape_i % 2])
+      fish[fish_n].shape(fish_shapes[shape_i % 2])
+      fish_direction += 180
+      fish[fish_n].setheading(fish_direction)
+    if(fish[fish_n].xcor() < -400 and fish_direction == 180):
+      shape_i += 1
+      wn.addshape(fish_shapes[shape_i % 2])
+      fish.shape(fish_shapes[shape_i % 2])
+      fish_direction -= 180
+      fish[fish_n].setheading(fish_direction)
 
-wn.addshape("shark.gif")
-shark = trtl.Turtle(shape = "shark.gif")
-def controller():
-  shark.forward(10)
-'''wn.onkeypress(controller, "Left")
-wn.listen()'''
+
 
 '''thr = [0, 0]
 thr[0] = threading.Thread(target = fish1_moves) #args = (x)
@@ -69,28 +91,19 @@ thr[1].start()
 
 thr[0].join()
 thr[1].join()'''
-fish_n = 0
-t = [0,0,0,0,0]
-fish_shape1 = ["fish1.gif","fish2.gif","fish3.gif","fish4.gif"]
-fish_shape2 = ["fish1-1.gif","fish2-1.gif","fish3-1.gif","fish4-1.gif"]
-fish_speed = [1.5, 2, 1, 0.7]
-fish_cor = [[-100, -40], [100, -30], [100, -50], [-100, -30]]
-fish_dir = [180, 0, 0, 0]
-while True:
-  if(fish_n < 3):
-    for i in range(3):
-      t[i] = threading.Thread(target=create_fish, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0, 0))
-      fish_n += 1
 for i in range(1):
-  t1 = threading.Thread(target=elements_moves, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0))
+  t1 = threading.Thread(target=elements_moves, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0, 0))
   t1.setDaemon(True)
   t1.start()
-  t1 = threading.Thread(target=elements_moves, args=("fish3.gif", 100, -60, 3, "fish3-1.gif", 180))
+  t1 = threading.Thread(target=elements_moves, args=("fish3.gif", 100, -60, 3, "fish3-1.gif", 180, 1))
   t1.setDaemon(True)
   t1.start()
-  t2 = threading.Thread(target=elements_moves, args=("fish4.gif", 100, -70, 2, "fish4-1.gif", 180))
+  t2 = threading.Thread(target=elements_moves, args=("fish4.gif", 100, -70, 2, "fish4-1.gif", 180, 2))
   t2.setDaemon(True)
   t2.start()
+'''t3 = threading.Thread(target=elements_moves, args=("shark.gif", -100, -40, 1.5, "shark.gif", 0))
+t3.setDaemon(True)
+t3.start()'''
 '''fish_n = 3
 threads = [0,0,0,0]
 fish_shape1 = ["fish1.gif","fish2.gif","fish3.gif","fish4.gif"]
@@ -107,6 +120,9 @@ for i in range(fish_n):
 
 
 
+
+wn.addshape("shark.gif")
+shark = trtl.Turtle(shape = "shark.gif")
 
 
 
