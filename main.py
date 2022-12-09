@@ -1,325 +1,55 @@
 import turtle as trtl
-
-
 #for multi threading
 import threading
-
-
 import random
 
+from cloud import create_clouds
+from lightening import create_lightening
+from ocean import create_ocean
 
-#rain part part of code
 canvheight = 600
 canvwidth = 800
 
 wn = trtl.Screen()
-
 wn.setup(canvwidth, canvheight)
 
 
 p = trtl.Turtle()
-
-
-
+#improve speed
+p.speed(1000)
+#for canvas layout
 p.penup()
 p.goto(0,0)
-p.forward(100)
+p.forward(400)
+p.pendown()
 p.left(90)
-p.forward(100)
+p.forward(300)
 p.left(90)
-p.forward(200)
+p.forward(800)
 p.left(90)
-p.forward(200)
+p.forward(600)
 p.left(90)
-p.forward(200)
+p.forward(800)
 p.left(90)
-p.forward(100)
+p.forward(300)
 p.right(90)
 
 
 #The code below is for the cloud
 #This code is for the big circle part of the cloud.
-p.pencolor("grey")
-p.fillcolor("dark grey")
-p.penup()
-p.goto(-3,50)
-p.pendown()
-p.begin_fill()
-p.circle(23)
-p.end_fill()
-p.goto(-3,50)
-p.pensize(5)
-p.pencolor("light grey")
-p.circle(23,200)
-p.pencolor("grey")
-#Code below is for the second biggest circle in the cloud on the right
-p.circle(23,185)
-p.goto(27,51)
-p.begin_fill()
-p.circle(18)
-p.end_fill()
-p.goto(27,51)
-p.pensize(5)
-p.pencolor("light grey")
-p.circle(18,190)
-p.penup()
-#code below is the second biggest circle for the cloud on the left.
-p.goto(-38,83)
-p.pendown()
-p.pencolor("dark grey")
-p.begin_fill()
-p.circle(18)
-p.end_fill()
-p.circle(18,270)
-p.pencolor("grey")
-p.circle(18,275)
-p.penup()
-#Code below is the circle for the cloud on the far left.
-p.goto(-42,51)
-p.pendown()
-p.pencolor("dark grey")
-p.begin_fill()
-p.circle(12)
-p.end_fill()
-p.circle(12,100)
-p.pencolor("grey")
-p.pensize(5)
-p.circle(12,280)
-p.penup()
-#code below is for the medium sized circle for the cloud, before the farthest on the right. 
-p.goto(57,55)
-p.begin_fill()
-p.circle(15)
-p.end_fill()
-p.pendown()
-p.pencolor("light grey")
-p.circle(15,185)
-p.pencolor("dark grey")
-p.circle(15,60)
-p.pencolor("grey")
-p.circle(15,105)
-p.penup()
-#Code below is for the small circle in the cloud, farthest to the right. 
-p.goto(75,51)
-p.pendown()
-p.pencolor("dark grey")
-p.begin_fill()
-p.circle(12)
-p.end_fill()
-p.pencolor("light grey")
-p.circle(12,185)
-p.pencolor("dark grey")
-p.circle(12,60)
-p.pencolor("grey")
-p.circle(12,105)
+for i in range(10):
+  cloud_x = random.randrange(-350, 350)
+  cloud_y = random.randrange(200, 250)
+  print(cloud_x, cloud_y)
+  create_clouds(cloud_x, cloud_y)
 # Code below is for the lightning bolt.
-p.penup()
-p.goto(15,47)
-p.pendown()
-p.pensize(4)
-
-colors = ["red", "orange", "yellow"]
-
-color = random.choice(colors)
-p.fillcolor(color)
-p.begin_fill()
-p.right(65)
-color = random.choice(colors)
-p.pencolor(color)
-p.circle(18,70)
-p.right(110)
-p.circle(12,20)
-p.right(65)
-p.forward(18)
-p.left(110)
-p.forward(10)
-p.right(110)
-p.forward(30)
-p.right(155)
-p.forward(20)
-p.left(85)
-p.forward(8)
-p.right(100)
-p.forward(25)
-p.end_fill()
-p.penup()
-p.goto(15,48)
-p.pendown()
-p.pensize(6)
-p.right(89)
-p.pencolor("grey")
-p.circle(18,52)
-p.penup()
-p.goto(20,0)
-p.pendown()
-p.setheading(360)
 
 #this code for ocean
-p.pensize(1)
-p.begin_fill()
-p.fillcolor("light blue")
-p.penup()
-p.goto(-100,0)
-p.pendown()
-p.pencolor("light blue")
-for i in range(4):
-  p.sety(0)
-  p.setheading(0)
-  p.pendown()
-  p.circle(29,60)
-  p.setheading(300)
-  p.circle(29,60)
-p.goto(100, -100)
-p.goto(-100,-100)
-p.goto(-100,0)
-p.end_fill()
-
-p.begin_fill()
-p.fillcolor("#3B5387")
-p.penup()
-p.goto(-100,-25)
-p.pendown()
-p.pencolor("azure")
-p.pensize(4)
-for i in range(4):
-  p.sety(-25)
-  p.setheading(0)
-  p.pendown()
-  p.circle(29,60)
-  p.setheading(300)
-  p.circle(29,60)
-p.goto(100, -100)
-p.goto(-100,-100)
-p.goto(-100,-25)
-p.end_fill()
-
-p.begin_fill()
-p.fillcolor("#1F254A")
-p.penup()
-p.goto(-100,-50)
-p.pendown()
-p.pencolor("azure")
-p.pensize(4)
-for i in range(4):
-  p.sety(-50)
-  p.setheading(0)
-  p.pendown()
-  p.circle(29,60)
-  p.setheading(300)
-  p.circle(29,60)
-p.goto(100, -100)
-p.goto(-100,-100)
-p.goto(-100,-50)
-p.end_fill()
-
-#this code for sand
-p.pensize(1)
-p.penup()
-p.goto(-100,-90)
-p.pendown()
-p.begin_fill()
-p.pencolor("black")
-p.fillcolor("#ADAD8B")
-p.setheading(30)
-p.circle(-200,30)
-p.circle(-200,30)
-p.goto(100,-100)
-p.goto(-100,-100)
-p.goto(-100,-90)
-p.end_fill()
-
-#this code for seeweed
-p.penup()
-p.goto(-50,-85)
-p.pendown()
-p.begin_fill()
-p.pencolor("black")
-p.fillcolor("#1A5704")
-p.setheading(53)
-p.circle(15,70)
-p.left(110)
-p.circle(15,70)
-p.penup()
-p.goto(-50,-70)
-p.pendown()
-p.setheading(53)
-p.circle(15,70)
-p.left(110)
-p.circle(15,70)
-p.penup()
-p.goto(-50,-55)
-p.pendown()
-p.setheading(53)
-p.circle(15,70)
-p.left(110)
-p.circle(15,25)
-p.end_fill()
-#this code for seeweed(2)
-p.penup()
-p.goto(50,-90)
-p.pendown()
-p.begin_fill()
-p.pencolor("black")
-p.fillcolor("#1A5704")
-p.setheading(53)
-p.circle(20,70)
-p.left(110)
-p.circle(20,70)
-p.penup()
-p.goto(50,-70)
-p.pendown()
-p.setheading(53)
-p.circle(20,70)
-p.left(110)
-p.circle(20,70)
-p.penup()
-p.goto(50,-50)
-p.pendown()
-p.setheading(53)
-p.circle(20,70)
-p.left(110)
-p.circle(20,70)
-p.end_fill()
-#rock
-p.penup()
-p.goto(0,-95)
-p.pendown()
-p.pencolor('black')
-p.fillcolor('darkgrey')
-p.begin_fill()
-p.setheading(0)
-p.circle(10,360,5)
-p.end_fill()
+create_ocean()
+for i in range(10):
+  create_lightening(random.randrange(-400, 400), 230)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#screen size
-screen_h = 200
-screen_w = 200
-
-wn = trtl.Screen()
-wn.setup(width=screen_w, height=screen_h)
-
-#wn.bgpic("ocean.gif") 
 
 def elements_moves(fish_shape1, x, y, fish_speed, fish_shape2, start_heading):
   fish_shapes = [fish_shape1, fish_shape2]
@@ -506,8 +236,8 @@ def rain():
 
 
 
-t4 = threading.Thread(target=rain)
+'''t4 = threading.Thread(target=rain)
 t4.setDaemon(True)
-t4.start()
+t4.start()'''
 wn = trtl.Screen()
 wn.mainloop()
