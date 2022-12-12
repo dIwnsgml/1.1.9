@@ -1,72 +1,10 @@
-import turtle as trtl
 import random
-
-p = trtl.Turtle()
-p.speed(10000000)
-
-
-def create_lightening():
-  while (True):
-    p.pencolor("yellow")
-    x = random.randrange(-400, 400)
-    for i in range(3):
-      p.penup()
-      p.goto(x, 230)
-      p.pendown()
-      for i in range(10):
-        p.pensize(10 - i)
-        p.setheading(random.randrange(240, 300))
-        p.forward(i * 6)
-    p.clear()
-
-
-'''  p.penup()
-  p.goto(15,47)
-  p.pendown()
-  p.pensize(4)
-
-  colors = ["red", "orange", "yellow"]
-
-  color = random.choice(colors)
-  p.fillcolor(color)
-  p.begin_fill()
-  p.right(65)
-  color = random.choice(colors)
-  p.pencolor(color)
-  p.circle(18,70)
-  p.right(110)
-  p.circle(12,20)
-  p.right(65)
-  p.forward(18)
-  p.left(110)
-  p.forward(10)
-  p.right(110)
-  p.forward(30)
-  p.right(155)
-  p.forward(20)
-  p.left(85)
-  p.forward(8)
-  p.right(100)
-  p.forward(25)
-  p.end_fill()
-  p.penup()
-  p.goto(15,48)
-  p.pendown()
-  p.pensize(6)
-  p.right(89)
-  p.pencolor("grey")
-  p.circle(18,52)
-  p.penup()
-  p.goto(20,0)
-  p.pendown()
-  p.setheading(360)'''
-
-p.color("black")
-
+import turtle as trtl
 
 def rai_n():
   while True:
-
+    x = random.randint(-400, 400)
+    y = random.randint(20, 300)
     horiz_turtles = []
 
     # use interesting shapes and colors
@@ -74,7 +12,7 @@ def rai_n():
 
     turtle_shapes = ["circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle", "circle"]
     trtl.color("black")
-    tloc = -400
+    tloc = -200
     p.shapesize(0.01)
     for s in turtle_shapes:
       print("aaa")
