@@ -51,10 +51,10 @@ create_ocean()
 
 
 
-wn.addshape("shark.gif")
+'''wn.addshape("shark.gif")
 shark = trtl.Turtle(shape = "shark.gif")
 def controller():
-  shark.forward(10)
+  shark.forward(10)'''
 '''wn.onkeypress(controller, "Left")
 wn.listen()'''
 
@@ -78,7 +78,8 @@ fish_dir = [180, 0, 0, 0]
 
 t[1] = threading.Thread(target=create_fish, args=("fish1.gif", -100, -40, 1.5, "fish1-1.gif", 0))
 t[1].start()
-
+t[1] = threading.Thread(target=create_fish, args=("fish3.gif", -100, -60, 1.5, "fish3-1.gif", 180))
+t[1].start()
 t[3] = threading.Thread(target=create_lightening)
 t[3].start()
 '''while True:
